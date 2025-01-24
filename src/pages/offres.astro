@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
 import "../assets/css/base.css";
 
 const offres = [
@@ -42,16 +43,7 @@ const offres = [
     <h1>Offres</h1> <!-- ou "Offres" pour la page des offres -->
     { offres.map((offre) => (
         // afficher les nom des maisons sous forme de liste <ul>.
-        <ul>
-            <li>{offre.nomMaison}</li>
-            <li>{offre.prix}</li>
-            <li>{offre.surface}</li>
-            <li>{offre.nbChambres}</li>
-            <li>{offre.nbSdb}</li>
-            <li>{offre.adresse}</li>
-            
-
-        </ul>
+        <Card {...offre} />
     ))
     }
 </Base>
