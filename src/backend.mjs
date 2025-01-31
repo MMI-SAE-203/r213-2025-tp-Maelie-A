@@ -8,7 +8,7 @@ export async function getOffres() {
             sort: '-created',
         });
         data = data.map((offre) => {
-            offre.img= pb.files.getURL(offre, offre.img);
+            offre.img= pb.files.getURL(offre, offre.image);
             return offre;
         });
         return data;
