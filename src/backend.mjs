@@ -32,3 +32,15 @@ export async function getOffre(id) {
     return null;
   }
 }
+
+export async function bySurface(s) {
+  const surfaceRecord = await pb
+    .collection("maison")
+    .getFullList({ filter: `surface> ${200}` });
+  return surfaceRecord;
+}
+
+export async function byPrix(p) {
+        const prixRecord = await pb.collection('maison').getFullList({ filter: Prix < ${1000}, }) ;
+        return prixRecord;
+    }

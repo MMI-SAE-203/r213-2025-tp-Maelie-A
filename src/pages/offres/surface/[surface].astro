@@ -1,0 +1,16 @@
+---
+import {bySurface} from '../../../backend.mjs';
+
+const { surface } = Astro.params;
+const offres = await bySurface(surface);
+
+---
+
+{offres.map(offre => (
+<div>
+        <h2>{offre.nomMaison}</h2>
+        <p>Surface {offre.surface} m2</p>
+    </div>
+))} 
+
+
