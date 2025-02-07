@@ -41,6 +41,6 @@ export async function bySurface(s) {
 }
 
 export async function byPrix(p) {
-        const prixRecord = await pb.collection('maison').getFullList({ filter: Prix < ${1000}, }) ;
+        const prixRecord = await pb.collection('maison').getFullList({ filter: "Prix < ${1000}", }) ;
         return prixRecord;
     }
