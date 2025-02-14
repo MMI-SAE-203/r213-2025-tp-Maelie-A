@@ -3,11 +3,31 @@ import Base from '../../layouts/Base.astro';
 import Card from '../../components/Card.astro';
 
 import { getOffres } from '../../backend.mjs';
-const offres = await getOffres();
+import { filterByPrix } from '../../backend.mjs';
 
+let message = '';
+let offres = [];
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+    const minPrix = parseInt(data.get("minPrix") as string);
+    const maxPrix = parseInt(data.get("maxPrix") as string);
 
+    if (minPrix >= 0 && maxPrix >= 0 && maxPrix > minPrix) {
+        offres = await filterByPrix(minPrix, maxPrix);
+		if(offres.length === 0) {
+			message = `Pas d'offres entre ${minPrix}€ et ${maxPrix}€`;
+		} else {
+        	message = `Liste des offres entre ${minPrix}€ et ${maxPrix}€`
+		}
+    } else {
+        message = "Veuillez entrer des valeurs valides pour le prix.";
+        offres = await getOffres();
+    }
+} else {
+    offres = await getOffres();
+}
 ---
-
+<p>{message}</p>
 <form action="/offres" method="POST">
     <input type="number" name="minPrix" placeholder="Prix minimum" />
     <input type="number" name="maxPrix" placeholder="Prix maximum" />
@@ -19,7 +39,7 @@ const offres = await getOffres();
 
 
 <Base titre="Accueil">
-    <h1>Offres</h1> <!-- ou "Offres" pour la page des offres -->
+    <h1>Offres</h1> 
     <div x-data="{ showFavorites: false }" class="flex flex-col items-center"> 
     <button @click="showFavorites = !showFavorites">
         <span x-show="!showFavorites">Afficher les favoris</span>
