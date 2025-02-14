@@ -1,5 +1,5 @@
 import PocketBase from "pocketbase";
-const pb = new PocketBase('http:127.0.0.1:8090');
+const pb = new PocketBase("http:127.0.0.1:8090");
 
 export async function getOffres() {
   try {
@@ -40,9 +40,11 @@ export async function bySurface(s) {
 }
 
 export async function byPrix(p) {
-        const prixRecord = await pb.collection('maison').getFullList({ filter: "Prix < ${1000}", }) ;
-        return prixRecord;
-    }
+  const prixRecord = await pb
+    .collection("maison")
+    .getFullList({ filter: "Prix < ${1000}" });
+  return prixRecord;
+}
 
 export async function addOffre(house) {
   try {
