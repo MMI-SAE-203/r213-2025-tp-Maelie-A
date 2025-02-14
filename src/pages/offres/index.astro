@@ -8,6 +8,17 @@ console.log(offres);
 
 
 ---
+
+<form action="/offres" method="POST">
+    <input type="number" name="minPrix" placeholder="Prix minimum" />
+    <input type="number" name="maxPrix" placeholder="Prix maximum" />
+    <input type="submit" value="Filtrer par prix" />
+</form>
+
+
+
+
+
 <Base titre="Accueil">
     <h1>Offres</h1> <!-- ou "Offres" pour la page des offres -->
     <div x-data="{ showFavorites: false }" class="flex flex-col items-center"> 
