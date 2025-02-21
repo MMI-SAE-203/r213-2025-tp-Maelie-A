@@ -3,12 +3,32 @@ const {...offres} = Astro.props;
 console.log(offres);
 
 ---
-<a href={`/offres/${offres.id}`}>Voir plus</a>
-
+<a href={`/offres/${offres.id}`} class="relative block transform transition duration-300 hover:-translate-y-4 hover:shadow-2xl">
     <div
-        class="h-[16em] w-[18em] border-2 border-[rgba(0,0,0,0.5)] rounded-[1.5em] bg-gradient-to-br bg-violet-400 to-pink-100 text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px]"
+        class="relative h-[16em] w-[18em] border-2 border-[rgba(0,0,0,0.5)] rounded-[1.5em] 
+        bg-gradient-to-br from-violet-950 to-violet-500 text-white font-nunito p-[1em] 
+        flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px]
+        shadow-lg -translate-y-2 hover:shadow-2xl"
     >
-    <img src={offres.img} alt={offres.nomMaison} class="h-[10em] w-[16em] object-cover rounded-[1em]"/>
-<div>
-   
+        <!-- Effet de superposition -->
+        <div class="absolute -top-2 -left-2 w-full h-full bg-white/10 rounded-[1.5em] shadow-md"></div>
+
+        <!-- Image -->
+        <img src={offres.img} alt={offres.nomMaison} class="h-[10em] w-[16em] object-cover rounded-[1em] border-2 border-white shadow-md" />
+
+        <!-- Texte -->
+        <div class="relative">
+            <h3 class="text-lg font-bold">{offres.nomMaison}</h3>
+            <p class="text-sm">{offres.description}</p>
+        </div>
+         <!-- Bouton Voir plus -->
+        <a href={`/offres/${offres.id}`} 
+           class="mt-auto px-4 py-2 bg-white text-violet-700 font-bold text-sm rounded-lg transition duration-200 hover:bg-violet-200 text-center">
+            Voir plus
+        </a>
+    </div>
+
     
+
+
+
